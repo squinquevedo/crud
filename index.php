@@ -10,12 +10,21 @@
 </head>
 
 <body>
+    <script>
+        function eliminar(){
+            var respuesta = confirm("¿Esta seguro de querer eliminar el registro?");
+            return respuesta
+        }
+    </script>
     <h1 class="text-center p-3">hola</h1>
+    <?php 
+    include "modelo/conexion.php";
+    include "controlador/eliminar_persona.php"
+    ?>
     <div class="container-fluid row">
         <form class="col-4" p-3 method="POST">
             <h3 class="text-center text-secondary">Modulo de Registro de personas</h3>
-            <?php 
-            include "modelo/conexion.php";
+            <?php
             include "controlador/registro_persona.php";
             ?>
             <div class="mb-3">
@@ -67,7 +76,7 @@
                         <td><?= $datos->correo ?></td>
                         <td>
                             <a href="controlador/modificar_persona.php" class="btn btn-small btn-warning"><i class="fa-solid fa-pen"></i></a>
-                            <a href="" class="btn btn-small-danger"><i class="fa-solid fa-trash"></i></a>
+                            <a onclick="return eliminar()" href="index.php?id=<?= $datos->id ?>" class="btn btn-small-danger"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php }
